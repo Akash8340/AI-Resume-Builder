@@ -12,6 +12,7 @@ import {
   Sparkles,
   User,
 } from "lucide-react";
+import PersonalInfoForm from "../components/PersonalInfoForm";
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
@@ -42,7 +43,7 @@ const ResumeBuilder = () => {
   const [removeBackground, setRemoveBackground] = useState(false);
 
   const sections = [
-    { id: "person1", name: "Personal Info", icon: User },
+    { id: "personal", name: "Personal Info", icon: User },
     { id: "summary", name: "Summary", icon: FileText },
     { id: "experience", name: "Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCap },
@@ -104,18 +105,37 @@ const ResumeBuilder = () => {
                     </button>
                   )}
                   <button
-                      onClick={() =>
-                        setActiveSectionIndex((prevIndex) =>
-                          Math.min(prevIndex + 1, sections.length - 1)
-                        )
-                      }
-                      className={`flex items-center gap-1 p-3 rounded-lg
-                    text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ${activeSectionIndex === sections.length -1 && 'opacity-50'}`}
-                      disabled={activeSectionIndex === sections.length - 1}
-                    >
-                      <ChevronRight className="size-4" /> Next
-                    </button>
+                    onClick={() =>
+                      setActiveSectionIndex((prevIndex) =>
+                        Math.min(prevIndex + 1, sections.length - 1)
+                      )
+                    }
+                    className={`flex items-center gap-1 p-3 rounded-lg
+                    text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ${
+                      activeSectionIndex === sections.length - 1 && "opacity-50"
+                    }`}
+                    disabled={activeSectionIndex === sections.length - 1}
+                  >
+                    <ChevronRight className="size-4" /> Next
+                  </button>
                 </div>
+              </div>
+
+              {/* Form ContentL */}
+              <div className="space-y-6">
+                {activeSection.id === "personal" && (
+                  <PersonalInfoForm
+                    data={resumeData.personal_info}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        personal_info: data,
+                      }))
+                    }
+                    removeBackground={removeBackground}
+                    setRemoveBackground={setRemoveBackground}
+                  />
+                )}
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ const CallToAction = () => {
             Build a professional resume in minutes. Get started today!
         </p>
         <a
-          href="https://prebuiltui.com"
+          href="#"
           className="flex items-center gap-2 rounded py-3 px-8 bg-green-600 hover:bg-green-700 transition text-white"
         >
           <span>Get Started</span>
