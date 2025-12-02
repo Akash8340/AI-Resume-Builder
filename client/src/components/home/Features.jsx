@@ -15,13 +15,13 @@ const Features = () => {
         <span>very Simple Process</span>
       </div>
 
-      <Title
+      <Title 
         title="Build Your Resume"
         description="Upload your resume or start from scratch — let AI take your resume to the next level.
             Your perfect opportunity starts with a perfect resume. "
       />
 
-      <div className="flex flex-col md:flex-row items-center justify-center xl:-mt-10">
+      <div className="flex flex-col md:flex-row items-center justify-center xl:mt-10">
         <img
           className="max-w-2xl w-full xl:-ml-32"
           src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/features/group-image-1.png"
