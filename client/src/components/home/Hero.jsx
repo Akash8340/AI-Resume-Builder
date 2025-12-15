@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const { user } = useSelector((state) => state.auth);
+
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   const logos = [
@@ -17,7 +20,7 @@ const Hero = () => {
       <div className="min-h-screen pb-20">
         {/* Navbar */}
         <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
-          <a href="https://prebuiltui.com">
+          <a href="/">
             <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
           </a>
 
@@ -40,14 +43,24 @@ const Hero = () => {
             <Link
               to="/app?state=register"
               className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
+              hidden={user}
             >
               Get started
             </Link>
             <Link
-              to="/login"
+              to="/app?state=login"
               className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
+              hidden={user}
             >
               Login
+            </Link>
+            <Link
+              to="/app"
+              className="hidden md:block px-8 py-2 bg-green-500
+            hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
+              hidden={!user}
+            >
+              Dashboard
             </Link>
           </div>
 
@@ -166,7 +179,8 @@ const Hero = () => {
           </h1>
 
           <p className="max-w-md text-center text-base my-7">
-            Create & edit professional resumes in minutes with our AI-powered resume
+            Create & edit professional resumes in minutes with our AI-powered
+            resume
           </p>
 
           {/* CTA Buttons */}
