@@ -85,6 +85,8 @@ export const updateResume = async (req, res) => {
         const userId = req.userId;
         const {resumeId, resumeData, removeBackground} = req.body;
         const image = req.file;
+        
+        console.log("FILE: ", req.file);
 
         let resumeDataCopy; 
         if(typeof resumeData === 'string'){
@@ -95,10 +97,11 @@ export const updateResume = async (req, res) => {
 
         if(image){
 
-            const imageBufferData = fs.createReadStream(image.path);
+            // const imageBufferData = fs.createReadStream(image.path);
 
            const response = await imagekit.files.upload({
-                            file: imageBufferData,
+                            //file : imageBufferData,
+                            file: image.buffer.toString("base64"),
                             fileName: 'resume.png',
                             folder: 'user-resumes',
                             transformation: {
@@ -113,6 +116,7 @@ export const updateResume = async (req, res) => {
         return res.status(200).json({message: "Saved successfully", resume});
 
     } catch (error) {
+        console.log("update resume error:", error);
         return res.status(400).json({message: error.message});       
     }
 }

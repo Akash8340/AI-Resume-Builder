@@ -135,7 +135,7 @@ const ResumeBuilder = () => {
       const { data } = await api.put("/api/resumes/update", formData, {
         headers: { Authorization: token },
       });
-
+  
       setResumeData(data.resume);
       toast.success(data.message);
     } catch (error) {
